@@ -12,7 +12,7 @@ namespace PlayGround
 
         }
 
-        public bool FindNumberIn2DArray(int[][] matrix, int target)
+        public void Solution()
         {
             
         }
