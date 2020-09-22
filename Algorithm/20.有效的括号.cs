@@ -17,6 +17,6 @@ public class Solution {
                     return false;
             }
         }
-        return (stack.Count() == 0);
+        return (!stack.Any());
     }
 }
