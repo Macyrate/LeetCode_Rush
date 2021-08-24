@@ -12,7 +12,7 @@ public class Solution
     public int[] TwoSum(int[] nums, int target)
     {
         //用哈希表存储数组中元素的值与下标
-        Dictionary<int, int> dict = new Dictionary<int, int>();
+        var dict = new Dictionary<int, int>();
 
         for (int idx = 0; idx < nums.Length; idx++)
         {
@@ -26,7 +26,8 @@ public class Solution
             dict.TryAdd(nums[idx], idx);
         }
 
-        return new int[2] { -1, -1 }; //实在没有，则返回{ -1, -1 }
+        //实在没有，则返回{ -1, -1 }
+        return new int[] { -1, -1 };
     }
 }
 
