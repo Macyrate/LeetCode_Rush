@@ -3,34 +3,31 @@
  *
  * [1] 两数之和
  */
-
 // @lc code=start
 // using System.Collections.Generic;
 // using System.Linq;
 // using System;
-
 public class Solution
 {
     public int[] TwoSum(int[] nums, int target)
     {
-        Dictionary<int, int> dict = new Dictionary<int, int>();     //用哈希表存储数组中元素的值与下标
-        for (int i = 0; i < nums.Length; i++)
+        //用哈希表存储数组中元素的值与下标
+        Dictionary<int, int> dict = new Dictionary<int, int>();
+
+        for (int idx = 0; idx < nums.Length; idx++)
         {
-            if (dict.ContainsKey(nums[i]))                          //由于数组中元素的值可能重复以造成碰撞，需要处理
+            //寻找哈希表里有没有正好能加成target的
+            if (dict.ContainsKey(target - nums[idx]))
             {
-                if (nums[i] * 2 == target)                          //若重复的数刚好是target的一半，则找到了答案
-                    return new int[] { dict[nums[i]], i };
+                return new int[] { idx, dict[target - nums[idx]] };
             }
-            else
-            {
-                dict.Add(nums[i], i);                               //一般情况下，直接加入哈希表
-                if (dict.ContainsKey(target - nums[i]) &&           //寻找哈希表里有没有正好能加成target的
-                    dict[target - nums[i]] != i)                    //光有还不行，万一自己刚好是target的一半，会找到自己
-                    return new int[] { dict[target - nums[i]], i };
-            }
+
+            //没找到就在哈希表中添加新元素，TryAdd不会添加重复元素
+            dict.TryAdd(nums[idx], idx);
         }
-        return new int[] { -1, -1 };                                //实在没有，则返回{ -1, -1 }
+
+        return new int[2] { -1, -1 }; //实在没有，则返回{ -1, -1 }
     }
 }
-// @lc code=end
 
+// @lc code=end
